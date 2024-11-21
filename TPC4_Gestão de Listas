@@ -1,0 +1,119 @@
+import random
+
+lista_numeros = []
+
+def menu():
+    print("\nMenu:")
+    print("(1) Criar Lista Aleatória")
+    print("(2) Ler Lista do Utilizador")
+    print("(3) Soma dos Elementos")
+    print("(4) Média dos Elementos")
+    print("(5) Maior Elemento")
+    print("(6) Menor Elemento")
+    print("(7) Lista está Ordenada por Ordem Crescente?")
+    print("(8) Lista está Ordenada por Ordem Decrescente?")
+    print("(9) Procurar um Elemento")
+    print("(0) Sair")
+    return input("Escolha uma opção: ")
+
+def criar_lista_aleatoria():
+    global lista_numeros
+    tamanho = int(input("Quantos números deseja na lista aleatória? "))
+    lista_numeros = [random.randint(1, 100) for _ in range(tamanho)]
+    print(f"Lista criada: {lista_numeros}")
+
+def ler_lista_usuario():
+    global lista_numeros
+    tamanho = int(input("Quantos números deseja adicionar à lista? "))
+    lista_numeros = []
+    for i in range(tamanho):
+        while True:
+            try:
+                numero = int(input(f"Digite o número {i + 1} de {tamanho}: "))
+                lista_numeros.append(numero)
+                break
+            except ValueError:
+                print("Por favor, insira um número válido.")
+    print(f"Lista criada: {lista_numeros}")
+
+def calcular_soma():
+    if lista_numeros:
+        print(f"Soma dos elementos: {sum(lista_numeros)}")
+    else:
+        print("A lista está vazia.")
+
+def calcular_media():
+    if lista_numeros:
+        print(f"Média dos elementos: {sum(lista_numeros) / len(lista_numeros):.2f}")
+    else:
+        print("A lista está vazia.")
+
+def maior_elemento():
+    if lista_numeros:
+        print(f"Maior elemento: {max(lista_numeros)}")
+    else:
+        print("A lista está vazia.")
+
+def menor_elemento():
+    if lista_numeros:
+        print(f"Menor elemento: {min(lista_numeros)}")
+    else:
+        print("A lista está vazia.")
+
+def esta_ordenada_crescente():
+    if lista_numeros:
+        print("Sim" if lista_numeros == sorted(lista_numeros) else "Não")
+    else:
+        print("A lista está vazia.")
+
+def esta_ordenada_decrescente():
+    if lista_numeros:
+        print("Sim" if lista_numeros == sorted(lista_numeros, reverse=True) else "Não")
+    else:
+        print("A lista está vazia.")
+
+def procurar_elemento():
+    if lista_numeros:
+        try:
+            elemento = int(input("Digite o número que deseja procurar: "))
+            posicao = lista_numeros.index(elemento) if elemento in lista_numeros else -1
+            if posicao != -1:
+                print(f"O número {elemento} está na posição {posicao}.")
+            else:
+                print(f"O número {elemento} não está na lista.")
+        except ValueError:
+            print("Por favor, insira um número válido.")
+    else:
+        print("A lista está vazia.")
+
+def sair():
+    print(f"A aplicação terminou. Lista final: {lista_numeros}")
+    exit()
+
+while True:
+    opcao = menu()
+    if opcao == '1':
+        criar_lista_aleatoria()
+    elif opcao == '2':
+        ler_lista_usuario()
+    elif opcao == '3':
+        calcular_soma()
+    elif opcao == '4':
+        calcular_media()
+    elif opcao == '5':
+        maior_elemento()
+    elif opcao == '6':
+        menor_elemento()
+    elif opcao == '7':
+        esta_ordenada_crescente()
+    elif opcao == '8':
+        esta_ordenada_decrescente()
+    elif opcao == '9':
+        procurar_elemento()
+    elif opcao == '0':
+        sair()
+    else:
+        print("Opção inválida. Por favor, tente novamente.")
+
+
+
